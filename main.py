@@ -1,5 +1,5 @@
 from keras.datasets import cifar10
-from keras.layers import Conv2D, Dense, Flatten
+from keras.layers import Conv2D, Dense, Flatten, MaxPooling2D
 from keras.models import Sequential
 from keras.utils import to_categorical
 
@@ -31,8 +31,19 @@ model.add(Conv2D(32, (3, 3), activation='relu',
 
 # Add some extra convolutional layers for extra processing
 model.add(Conv2D(32, (3, 3), activation='relu'))
+
+# Improve model efficiency by max-pooling. Max-pooling scales down the output of
+# the convolutional layers by keeping the largest values and throwing away the
+# smaller, least useful values. Typically, max-pooling is performed right after
+# a block of convolutional layers.
+# Divide the image into 2 by 2 squares and only take the largest value from each
+# 2 by 2 region. That will reduce the size of our image while keeping the most
+# important values.
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
 model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
 model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 
 # Transition from convolutional layers to dense layers with a flatten layer
 model.add(Flatten())
