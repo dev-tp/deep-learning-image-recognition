@@ -67,5 +67,13 @@ model.add(Dense(512, activation='relu'))
 # object, the output layer will usually use a softmax activation function.
 model.add(Dense(10, activation='softmax'))
 
+# Compile model
+# Use categorical_crossentropy loss function when trying to classify objects
+# into different categories. Otherwise, use binary crossentropy to test if an
+# object belongs to one category.
+# Use AdAM (Adaptive Momement Estimation) to optimise model.
+model.compile(loss='categorical_crossentropy',
+              metrics=['accuracy'], optimizer='adam')
+
 # Print a summary of the model
 model.summary()
