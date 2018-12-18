@@ -1,5 +1,5 @@
 from keras.datasets import cifar10
-from keras.layers import Conv2D, Dense, Flatten, MaxPooling2D
+from keras.layers import Conv2D, Dense, Dropout, Flatten, MaxPooling2D
 from keras.models import Sequential
 from keras.utils import to_categorical
 
@@ -41,9 +41,17 @@ model.add(Conv2D(32, (3, 3), activation='relu'))
 # important values.
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+# Force the neural network to try harder to learn without memorising the input
+# data. Randomly throw away some of the data by cutting some of the connections
+# between the layers. Dropout layers are usually added after max-pooling layers,
+# or after a group of dense layers. Typical dropout percentages range between
+# 25% to 50%.
+model.add(Dropout(0.25))
+
 model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
 model.add(Conv2D(64, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.5))
 
 # Transition from convolutional layers to dense layers with a flatten layer
 model.add(Flatten())
