@@ -77,3 +77,19 @@ model.compile(loss='categorical_crossentropy',
 
 # Print a summary of the model
 model.summary()
+
+# Train model
+# The batch size is the amount of items we want to feed into the network at once
+# during training. If the number is too low, training will take forever and
+# might not ever finish. If the number is too high, there's a high chance of
+# running out of memory.
+# For images, a typical batch size is between 32 and 128 images, but feel free
+# to experiment.
+# One full pass through the entire training data set is called an epoch. For
+# every epoch, the neural network's chances of learning increase; however, it
+# will take a long time learn in each pass. At some point, the neural network
+# will stop learning, thus it is important to find a value in between. In
+# general, the larger your data set, the less epochs you need to train.
+# Shuffle data batches to prevent the order from influencing training results.
+model.fit(x_test, y_test, batch_size=32, epochs=30,
+          shuffle=True, validation_data=(x_train, y_train))
