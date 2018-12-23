@@ -92,5 +92,21 @@ model.summary()
 # will stop learning, thus it is important to find a value in between. In
 # general, the larger your data set, the less epochs you need to train.
 # Shuffle data batches to prevent the order from influencing training results.
+
+# Loss is the numerical representation of how wrong the model is, while accuracy
+# represents how often the model is making the correct predition for the
+# training data. If the loss doesn't go down over time, the accuracy will not
+# improve. In that case, something may be wrong with the neural network design,
+# or there are problems with the training data. It may also be that the data set
+# may be too small to train a neural network, or that the model doesn't have
+# enough layers to capture the patterns in the data set.
 model.fit(x_test, y_test, batch_size=32, epochs=30,
           shuffle=True, validation_data=(x_train, y_train))
+
+# Save neural network structure; this can be reused with different weights and
+# other inputs.
+with open('model_structure.json', 'w') as json_file:
+    json_file.write(model.to_json())
+
+# Save neural network's trained weights
+model.save_weights('model_weights.h5')
