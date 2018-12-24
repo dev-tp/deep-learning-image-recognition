@@ -100,8 +100,8 @@ model.summary()
 # or there are problems with the training data. It may also be that the data set
 # may be too small to train a neural network, or that the model doesn't have
 # enough layers to capture the patterns in the data set.
-model.fit(x_test, y_test, batch_size=32, epochs=30,
-          shuffle=True, validation_data=(x_train, y_train))
+model.fit(x_train, y_train, batch_size=64, epochs=30,
+          shuffle=True, validation_data=(x_test, y_test))
 
 # Save neural network structure; this can be reused with different weights and
 # other inputs.
