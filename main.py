@@ -61,7 +61,7 @@ model.add(Flatten())
 # The input_shape is (32, 32, 3) because the images are 32x32 and 3 channels
 # for red, green, and blue.
 model.add(Dense(512, activation='relu'))
-model.add(Dropout(0.25))
+model.add(Dropout(0.5))
 
 # Since CIFAR-10 data set has 10 different kinds of objects, we create a dense
 # layer with 10 nodes. However, when doing classification with more than one
