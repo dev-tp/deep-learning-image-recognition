@@ -105,8 +105,8 @@ model.fit(x_train, y_train, batch_size=64, epochs=30,
 
 # Save neural network structure; this can be reused with different weights and
 # other inputs.
-with open('model_structure.json', 'w') as json_file:
+with open('model-structure.json', 'w') as json_file:
     json_file.write(model.to_json())
 
 # Save neural network's trained weights
-model.save_weights('model_weights.h5')
+model.save_weights('model-weights.h5')
