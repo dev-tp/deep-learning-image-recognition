@@ -1,19 +1,25 @@
 import joblib
-import matplotlib.image as mpimg
 import numpy as np
 import os
 
 from keras.applications import vgg16
+from keras.preprocessing import image
 
 images = []
 labels = []
 
 for file_name in os.listdir('not-dogs'):
-    images.append(mpimg.imread(f"not-dogs/{file_name}"))
+    loaded_image = image.load_img(f"not-dogs/{file_name}")
+    loaded_image = image.img_to_array(loaded_image)
+
+    images.append(loaded_image)
     labels.append(0)
 
 for file_name in os.listdir('dogs'):
-    images.append(mpimg.imread(f"dogs/{file_name}"))
+    loaded_image = image.load_img(f"dogs/{file_name}")
+    loaded_image = image.img_to_array(loaded_image)
+
+    images.append(loaded_image)
     labels.append(1)
 
 x_train = np.array(images)
